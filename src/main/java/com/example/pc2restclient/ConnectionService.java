@@ -7,10 +7,12 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class ConnectionService {
 
+    public String remoteTempUrl = "http://192.168.0.167:8080/inventory/";
+    public String localhostUrl = "http://localhost:8091/inventory/";
     public String checkInventoryService(String id){
         RestTemplate restTemplate = new RestTemplate();
         String inventoryResourceUrl
-                = "http://192.168.0.167:8080/inventory/check";
+                = localhostUrl + "check";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(inventoryResourceUrl + "/" + id, String.class);
         return response.toString();
@@ -19,7 +21,7 @@ public class ConnectionService {
     public String lockInventoryService(String id){
         RestTemplate restTemplate = new RestTemplate();
         String inventoryResourceUrl
-                = "http://192.168.0.167:8080/inventory/setlocktrue";
+                = localhostUrl  + "setlocktrue";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(inventoryResourceUrl + "/" + id, String.class);
         return response.toString();
@@ -28,7 +30,7 @@ public class ConnectionService {
     public String unlockInventoryService(String id){
         RestTemplate restTemplate = new RestTemplate();
         String inventoryResourceUrl
-                = "http://192.168.0.167:8080/inventory/setlockfalse";
+                = localhostUrl + "setlockfalse";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(inventoryResourceUrl + "/" + id, String.class);
         return response.toString();
@@ -37,7 +39,7 @@ public class ConnectionService {
     public String prepareAndLockInventory(String id){
         RestTemplate restTemplate = new RestTemplate();
         String inventoryResourceUrl
-                = "http://192.168.0.167:8080/inventory/setlocktrue";
+                = localhostUrl + "setlocktrue";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(inventoryResourceUrl + "/" + id, String.class);
         return response.toString();
@@ -46,7 +48,7 @@ public class ConnectionService {
     public String commitAndUnockInventory(String id){
         RestTemplate restTemplate = new RestTemplate();
         String inventoryResourceUrl
-                = "http://192.168.0.167:8080/inventory/reserve";
+                = localhostUrl + "reserve";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(inventoryResourceUrl + "/" + id, String.class);
         return response.toString();
@@ -55,7 +57,7 @@ public class ConnectionService {
     public String rollback(String id){
         RestTemplate restTemplate = new RestTemplate();
         String inventoryResourceUrl
-                = "http://192.168.0.167:8080/inventory/rollback";
+                = localhostUrl + "rollback";
         ResponseEntity<String> response
                 = restTemplate.getForEntity(inventoryResourceUrl + "/" + id, String.class);
         return response.toString();
